@@ -7,6 +7,7 @@ module "subscriptions" {
   queue                   = each.value.queue
   topic                   = each.value.project != null ? "projects/${each.value.project}/topics/hedwig-${each.value.topic}" : "hedwig-${each.value.topic}"
   enable_message_ordering = each.value.enable_ordering
+  iam_service_account     = each.value.service_account
 
   labels = each.value.labels
 }

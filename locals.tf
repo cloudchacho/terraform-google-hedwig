@@ -1,13 +1,17 @@
 locals {
   subscriptions = {
-    for subscription in flatten([
+    for merged_subscription in flatten([
       for name, consumer in var.pull_consumers : [
-        for topic, subscription in consumer.subscriptions : merge(subscription, {
-          queue  = name
-          topic  = topic
-          labels = consumer.labels
-        })
+        for topic, subscription in consumer.subscriptions : {
+          queue                        = name
+          topic                        = topic
+          labels                       = consumer.labels
+          service_account              = consumer.service_account
+          project                      = subscription.project
+          enable_ordering              = subscription.enable_ordering
+          high_message_count_threshold = subscription.high_message_count_threshold
+        }
       ]
-    ]) : "${subscription.queue}-${subscription.topic}" => subscription
+    ]) : "${merged_subscription.queue}-${merged_subscription.topic}" => merged_subscription
   }
 }
