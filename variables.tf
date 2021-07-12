@@ -58,6 +58,7 @@ variable "queue_alert_notification_channels" {
 
 variable "pull_consumers" {
   description = "List of pull consumers, map of consumer queue name to queue config"
+  default     = {}
   type = map(object({
     # labels associated with this app
     labels = optional(map(string))
@@ -84,6 +85,7 @@ variable "pull_consumers" {
 
 variable "topics" {
   description = "List of Hedwig topics"
+  default     = {}
   type = map(object({
     # Firehose all messages published to this topic into GCS
     enable_firehose = optional(bool)
