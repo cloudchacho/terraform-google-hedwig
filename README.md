@@ -28,8 +28,9 @@ module "hedwig" {
     }
     other-app : {
       subscriptions : {
-        user-updated-v1 : {
+        project-id-user-updated-v1 : {
           project : "project-id"
+          topic : "user-updated-v1"
           enable_ordering : true
           high_message_count_threshold : 100000
         }

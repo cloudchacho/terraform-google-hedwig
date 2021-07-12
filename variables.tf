@@ -67,7 +67,12 @@ variable "pull_consumers" {
     service_account = optional(string)
 
     # list of subscriptions for this consumer
+    # the key is the topic name. In case of conflicts in topic name due to cross-project subscriptions,
+    # use the field `topic` to override topic name
     subscriptions = map(object({
+      # the topic name for subscription
+      topic = optional(string)
+
       # for cross-project subscriptions, set to topic's project id
       project = optional(string)
 
