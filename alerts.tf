@@ -11,8 +11,8 @@ module "alerts" {
   labels = each.value.labels
 
   alerting_project                               = var.alerting_project
-  queue_high_message_count_notification_channels = var.queue_alert_notification_channels
-  dlq_high_message_count_notification_channels   = var.dlq_alert_notification_channels
+  queue_high_message_count_notification_channels = each.value.queue_alert_notification_channels == null ? var.queue_alert_notification_channels : each.value.queue_alert_notification_channels
+  dlq_high_message_count_notification_channels   = each.value.dlq_alert_notification_channels == null ? var.dlq_alert_notification_channels : each.value.dlq_alert_notification_channels
 }
 
 module "alerts-subscriptions" {
@@ -27,6 +27,6 @@ module "alerts-subscriptions" {
   labels = each.value.labels
 
   alerting_project                               = var.alerting_project
-  queue_high_message_count_notification_channels = var.queue_alert_notification_channels
-  dlq_high_message_count_notification_channels   = var.dlq_alert_notification_channels
+  queue_high_message_count_notification_channels = each.value.queue_alert_notification_channels
+  dlq_high_message_count_notification_channels   = each.value.dlq_alert_notification_channels
 }
