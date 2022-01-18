@@ -12,6 +12,7 @@ locals {
             project                      = subscription.project
             enable_ordering              = subscription.enable_ordering
             high_message_count_threshold = subscription.high_message_count_threshold
+            disable_dlq                  = subscription.disable_dlq == null ? false : subscription.disable_dlq,
           }
         }
       ]

@@ -81,6 +81,9 @@ variable "pull_consumers" {
 
       # threshold for high message alarms for this subscription. defaults to 5000.
       high_message_count_threshold = optional(number)
+
+      # disable dead letter queues. This is useful for firehose subscription using dataflow. Default false.
+      disable_dlq = optional(bool)
     }))
 
     # threshold for high message alarms for consumer's queue. defaults to 5000.
