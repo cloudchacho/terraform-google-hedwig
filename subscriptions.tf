@@ -1,6 +1,8 @@
 module "subscriptions" {
   for_each = local.subscriptions
 
+  depends_on = [module.queues, module.topics]
+
   source  = "cloudchacho/hedwig-subscription/google"
   version = ">= 3.4, <4"
 
