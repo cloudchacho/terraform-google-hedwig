@@ -79,17 +79,8 @@ variable "pull_consumers" {
       # ordered queues (https://cloud.google.com/pubsub/docs/ordering)
       enable_ordering = optional(bool)
 
-      # threshold for high message alarms for this subscription. defaults to 5000.
-      high_message_count_threshold = optional(number)
-
       # disable dead letter queues. This is useful for firehose subscription using dataflow. Default false.
       disable_dlq = optional(bool)
-
-      # Override list of Stackdriver notification channels for dead-letter queue non-empty alert
-      dlq_alert_notification_channels = optional(list(string))
-
-      # Override list of Stackdriver notification channels for queue high message count alert
-      queue_alert_notification_channels = optional(list(string))
     }))
 
     # threshold for high message alarms for consumer's queue. defaults to 5000.

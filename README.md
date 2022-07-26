@@ -22,22 +22,26 @@ module "hedwig" {
       labels : {
         "app" = "myapp"
         "env" = "dev"
-      },
+      }
       service_account: "myapp@project.iam.gserviceaccount.com"
       high_message_count_threshold : 100000
     }
     other-app : {
       subscriptions : {
         project-id-user-updated-v1 : {
+          # cross-project subscription
           project : "project-id"
           topic : "user-updated-v1"
           enable_ordering : true
-          high_message_count_threshold : 100000
-        }
+        },
       },
       labels : {
         cost-center : "foo"
-      }
+      },
+      # override
+      queue_alert_notification_channels = ["projects/<projectid>/notificationChannels/<other-channelid>"],
+      # override
+      dlq_alert_notification_channels   = ["projects/<projectid>/notificationChannels/<other-channelid>"],
     }
   }
   topics = {
@@ -46,7 +50,7 @@ module "hedwig" {
     },
     user-updated-v1 : {
       enable_firehose : true
-    }
+    },
   }
   queue_alert_notification_channels = ["projects/<projectid>/notificationChannels/<channelid>"]
   dlq_alert_notification_channels   = ["projects/<projectid>/notificationChannels/<channelid>"]
