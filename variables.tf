@@ -56,12 +56,6 @@ variable "queue_alert_notification_channels" {
   description = "List of Stackdriver notification channels for queue high message count alert"
 }
 
-variable "queue_no_activity_notification_channels" {
-  default     = []
-  type        = list(string)
-  description = "List of Stackdriver notification channels for queue no activity alert"
-}
-
 variable "pull_consumers" {
   description = "List of pull consumers, map of consumer queue name to queue config"
   default     = {}
@@ -97,9 +91,6 @@ variable "pull_consumers" {
 
     # Override list of Stackdriver notification channels for queue high message count alert
     queue_alert_notification_channels = optional(list(string))
-
-    # Override list of Stackdriver notification channels for queue no activity alert
-    queue_no_activity_notification_channels = optional(list(string))
   }))
 }
 
