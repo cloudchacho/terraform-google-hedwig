@@ -11,7 +11,7 @@ locals {
             topic           = subscription.topic != null ? subscription.topic : topic
             project         = subscription.project
             enable_ordering = subscription.enable_ordering
-            disable_dlq     = subscription.disable_dlq == null ? false : subscription.disable_dlq,
+            disable_dlq     = subscription.disable_dlq
           }
         }
       ]

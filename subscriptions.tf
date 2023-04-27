@@ -8,7 +8,7 @@ module "subscriptions" {
   topic                   = each.value.project != null ? "projects/${each.value.project}/topics/hedwig-${each.value.topic}" : module.topics[each.value.topic].name
   enable_message_ordering = each.value.enable_ordering
   iam_service_account     = each.value.service_account
-  disable_dlq             = each.value.disable_dlq != null ? each.value.disable_dlq : false
+  disable_dlq             = each.value.disable_dlq
 
   labels = each.value.labels
 }
