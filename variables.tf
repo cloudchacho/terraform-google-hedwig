@@ -80,7 +80,7 @@ variable "pull_consumers" {
       enable_ordering = optional(bool)
 
       # disable dead letter queues. This is useful for firehose subscription using dataflow. Default false.
-      disable_dlq = optional(bool)
+      disable_dlq = optional(bool, false)
     }))
 
     # threshold for high message alarms for consumer's queue. defaults to 5000.
@@ -102,6 +102,6 @@ variable "topics" {
     enable_firehose = optional(bool)
 
     # service accounts for publishing permissions
-    service_accounts = optional(list(string))
+    service_accounts = optional(list(string), [])
   }))
 }

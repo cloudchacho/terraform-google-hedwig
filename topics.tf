@@ -8,7 +8,7 @@ module "topics" {
 
   enable_firehose_all_messages = var.enable_firehose_all_topics || each.value.enable_firehose == true
 
-  iam_service_accounts = each.value.service_accounts != null ? each.value.service_accounts : []
+  iam_service_accounts = each.value.service_accounts
 
   enable_alerts    = var.enable_alerts
   alerting_project = var.alerting_project
