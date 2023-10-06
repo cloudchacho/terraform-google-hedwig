@@ -4,15 +4,12 @@ locals {
       for name, consumer in var.pull_consumers : [
         for topic, subscription in consumer.subscriptions : {
           key = "${name}-${topic}"
-          value = {
+          value = merge(subscription, {
             queue           = name
             labels          = consumer.labels
             service_account = consumer.service_account
             topic           = subscription.topic != null ? subscription.topic : topic
-            project         = subscription.project
-            enable_ordering = subscription.enable_ordering
-            disable_dlq     = subscription.disable_dlq
-          }
+          })
         }
       ]
     ]) :
