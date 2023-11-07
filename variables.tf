@@ -116,7 +116,11 @@ variable "topics" {
     # Firehose all messages published to this topic into GCS
     enable_firehose = optional(bool)
 
+    # DEPRECATED: use `iam_members` instead
     # service accounts for publishing permissions
     service_accounts = optional(list(string), [])
+
+    # IAM members for publishing permissions
+    iam_members = optional(list(string), [])
   }))
 }

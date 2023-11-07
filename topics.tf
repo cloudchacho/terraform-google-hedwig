@@ -2,13 +2,14 @@ module "topics" {
   for_each = var.topics
 
   source  = "cloudchacho/hedwig-topic/google"
-  version = ">= 2, <3"
+  version = ">= 2.2, <3"
 
   topic = each.key
 
   enable_firehose_all_messages = var.enable_firehose_all_topics || each.value.enable_firehose == true
 
   iam_service_accounts = each.value.service_accounts
+  iam_members          = each.value.iam_members
 
   enable_alerts    = var.enable_alerts
   alerting_project = var.alerting_project
