@@ -13,6 +13,7 @@ module "topics" {
   firehose_prefix              = each.value.firehose_prefix
   firehose_max_duration        = each.value.firehose_max_duration
   firehose_max_bytes           = each.value.firehose_max_bytes
+  firehose_write_avro          = each.value.firehose_write_avro
 
   iam_service_accounts = each.value.service_accounts
   iam_members          = each.value.iam_members

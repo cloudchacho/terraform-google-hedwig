@@ -97,6 +97,9 @@ variable "topics" {
     # The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The maxBytes limit may be exceeded in cases where messages are larger than the limit.
     firehose_max_bytes = optional(number)
 
+    # Write messages to Cloud Storage in Avro format with metadata.
+    firehose_write_avro = optional(bool)
+
     # DEPRECATED: use `iam_members` instead
     # service accounts for publishing permissions
     service_accounts = optional(list(string), [])
