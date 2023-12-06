@@ -91,6 +91,12 @@ variable "topics" {
     # Variable firehose_prefix declares the prefix for firehose—that is, saved—messages. Note: The "<topic>" string is replaced by var.topic; for example, "myenv/<topic>/" variable becomes "myenv/mytopic/" string. This confusing approach enables prefixing all topics in a for-loop.
     firehose_prefix = optional(string)
 
+    # The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline. A duration in seconds with up to nine fractional digits, ending with 's'. Example: "3.5s"
+    firehose_max_duration = optional(string)
+
+    # The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The maxBytes limit may be exceeded in cases where messages are larger than the limit.
+    firehose_max_bytes = optional(number)
+
     # DEPRECATED: use `iam_members` instead
     # service accounts for publishing permissions
     service_accounts = optional(list(string), [])
