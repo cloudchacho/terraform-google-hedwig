@@ -82,29 +82,22 @@ variable "topics" {
   description = "List of Hedwig topics"
   default     = {}
   type = map(object({
-    # Firehose—that is, save—all messages published to this topic into GCS
-    enable_firehose = optional(bool)
-
-    # Variable firehose_bucket declares the bucket for firehose—that is, saved—messages (should already exist)
-    firehose_bucket = optional(string)
-
-    # Variable firehose_prefix declares the prefix for firehose—that is, saved—messages. Note: The "<topic>" string is replaced by var.topic; for example, "myenv/<topic>/" variable becomes "myenv/mytopic/" string. This confusing approach enables prefixing all topics in a for-loop.
-    firehose_prefix = optional(string)
-
-    # The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline. A duration in seconds with up to nine fractional digits, ending with 's'. Example: "3.5s"
-    firehose_max_duration = optional(string)
-
-    # The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The maxBytes limit may be exceeded in cases where messages are larger than the limit.
-    firehose_max_bytes = optional(number)
-
-    # Write messages to Cloud Storage in Avro format with metadata.
-    firehose_write_avro = optional(bool)
-
     # DEPRECATED: use `iam_members` instead
     # service accounts for publishing permissions
     service_accounts = optional(list(string), [])
 
     # IAM members for publishing permissions
     iam_members = optional(list(string), [])
+
+    # Enable firehose for topic—that is, save all published messages to Cloud Storage
+    firehose_config = optional(object({
+      bucket            = optional(string)
+      enabled           = optional(bool)
+      filename_prefix   = optional(string)
+      filename_suffix   = optional(string)
+      max_duration      = optional(string)
+      max_bytes         = optional(number)
+      write_avro_format = optional(bool)
+    }))
   }))
 }
