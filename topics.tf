@@ -3,7 +3,7 @@ module "topics" {
 
   # source  = "cloudchacho/hedwig-topic/google"
   # version = ">= 2.2, <3"
-  source = "../terraform-google-hedwig-topic"
+  source = "/Users/max/terraform-google-hedwig-topic"
   # source = "git::https://github.com/max-standard/terraform-google-hedwig-topic.git?ref=firehose-reloaded"
 
   topic                = each.key
