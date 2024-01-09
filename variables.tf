@@ -91,7 +91,7 @@ variable "topics" {
 
     # Enable firehose for topic—that is, save all published messages to Cloud Storage
     firehose_config = optional(object({
-      bucket            = optional(string)
+      bucket            = string
       enabled           = optional(bool)
       filename_prefix   = optional(string)
       filename_suffix   = optional(string)
