@@ -2,7 +2,7 @@ module "topics" {
   for_each = var.topics
 
   source  = "cloudchacho/hedwig-topic/google"
-  version = ">= 3.0, <4"
+  version = ">= 3.0.1, <4"
 
   topic                = each.key
   firehose_config      = each.value.firehose_config
