@@ -75,6 +75,12 @@ variable "pull_consumers" {
 
     # Override list of Stackdriver notification channels for queue high message count alert
     queue_alert_notification_channels = optional(list(string))
+
+    # A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message
+    retry_policy = optional(object({
+      minimum_backoff = string
+      maximum_backoff = string
+    }))
   }))
 }
 
