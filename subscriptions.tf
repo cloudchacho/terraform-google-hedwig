@@ -15,4 +15,6 @@ module "subscriptions" {
   retain_acked_messages   = each.value.retain_acked_messages
 
   labels = each.value.labels
+
+  depends_on = [module.queues]
 }
